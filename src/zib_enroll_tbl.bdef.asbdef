@@ -1,0 +1,13 @@
+managed implementation in class zbp_ib_enroll_tbl unique;
+strict ( 2 );
+
+define behavior for ZIB_ENROLL_TBL alias enroll //alias <alias_name>
+persistent table zemployee_enroll
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+}

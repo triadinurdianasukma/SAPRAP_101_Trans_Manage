@@ -1,0 +1,13 @@
+managed implementation in class zbp_ib_course_tbl unique;
+strict ( 2 );
+
+define behavior for ZIB_COURSE_TBL alias course //alias <alias_name>
+persistent table zcourse_table
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+}

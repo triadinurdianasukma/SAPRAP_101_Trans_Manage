@@ -1,0 +1,13 @@
+managed implementation in class zbp_ib_employee_tbl unique;
+strict ( 2 );
+
+define behavior for ZIB_EMPLOYEE_TBL alias EMPLOYEE //alias <alias_name>
+persistent table zemployee_table
+lock master
+authorization master  ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+}

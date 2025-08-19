@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition for Employee Course Info'
+define service ZSRV_EMPLOYEE_INFO {
+  expose ZEMPLOYEE_C as employee;
+  expose ZCOURSE_C   as course;
+  expose ZENROLL_C   as enrollment;
+}

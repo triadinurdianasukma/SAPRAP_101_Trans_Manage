@@ -1,0 +1,61 @@
+managed implementation in class zbp_ib_course_d unique;
+//strict ( 2 );
+with draft;
+
+define behavior for ZIB_COURSE_D //alias <alias_name>
+persistent table zcourse_table_d
+draft table zcoursed
+lock master
+total etag LastChangedAt
+//authorization master ( instance )
+//etag master LastChangedAt
+{
+  create;
+  update;
+  delete;
+  association _Enroll { create; }
+  field ( numbering : managed, readonly ) Courseuuid;
+
+  mapping for zcoursed
+    {
+      Courseuuid      = courseuuid;
+      CourseId        = courseid;
+      CourseName      = coursename;
+      Virtualpossible = virtualpossible;
+      Ishandson       = ishandson;
+      Totalmarks      = totalmarks;
+      Cutofmarks      = cutofmarks;
+      StartDate       = startdate;
+      EndDate         = enddate;
+      Iscomplete      = iscomplete;
+      Capacity        = capacity;
+      LastChangedAt   = lastchangedat;
+      LastChangedBy   = lastchangedby;
+      changedAt       = changedat;
+    }
+}
+
+define behavior for ZIB_ENROLL_D //alias <alias_name>
+persistent table zemp_enroll_d
+draft table zemp_enrolld
+lock dependent by _Course
+//authorization dependent by _Course
+//etag master LastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) Courseuuid;
+  association _Course;
+
+  field ( numbering : managed, readonly ) Enrolluuid;
+  mapping for zemp_enroll_d
+    {
+      Enrolluuid    = enroll_uuid;
+      Courseuuid    = courseuuid;
+      Employeeid    = employeeid;
+      Status        = status;
+      Marks         = marks;
+      LastChangedAt = last_changed_at;
+      LastChangedBy = last_changed_by;
+    }
+}
